@@ -15,19 +15,7 @@ public class AndroidDev implements HitungNilai{
     private double nilaiTulis, nilaiCoding, nilaiWawancara;
     double nilai;
 
-    
-
-    public void setNilaiTulis(double nilaiTulis) {
-        this.nilaiTulis = nilaiTulis;
-    }
-
-    public void setNilaiCoding(double nilaiCoding) {
-        this.nilaiCoding = nilaiCoding;
-    }
-
-    public void setNilaiWawancara(double nilaiWawancara) {
-        this.nilaiWawancara = nilaiWawancara;
-    }
+ 
 
     public String getNama() {
         return this.Nama;
