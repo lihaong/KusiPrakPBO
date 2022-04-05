@@ -14,6 +14,7 @@ import FormPendaftaran.WebDev;
  */
 public class Main {
  
+    
     static void inputForm(int opsi){
         Scanner input = new Scanner(System.in);
         double nilaiTulis, nilaiCoding, nilaiWawancara;
@@ -37,6 +38,8 @@ public class Main {
             AD.pembobotanNilaiWawancara();
             AD.hasilAkhir();
             
+            subMenu(AD.getHasil(),AD.getNama(),opsi);
+            
         } else {
             System.out.println("\n|         Form Pendaftaran       |\n");
             System.out.print("Input NIK : ");
@@ -55,9 +58,11 @@ public class Main {
             WD.pembobotanNilaiCoding();
             WD.pembobotanNilaiWawancara();
             WD.hasilAkhir();
+            
+            subMenu(WD.getHasil(),WD.getNama(),opsi);
         }
     }
-    static void editForm(int opsiDev){
+    static void editForm(String Nama, int opsiDev){
         if (opsiDev == 1){
             Scanner input = new Scanner(System.in);
             double nilaiTulis, nilaiCoding, nilaiWawancara;
@@ -66,13 +71,18 @@ public class Main {
             nilaiTulis = input.nextDouble();
             System.out.print("Input Nilai Tes Coding  : ");
             nilaiCoding = input.nextDouble();
-            System.out.println(nilaiCoding);
             System.out.print("Input Nilai Tes Wawancara  : ");
             nilaiWawancara = input.nextDouble();
-            AndroidDev AD = new AndroidDev();
-            AD.setNilaiCoding(nilaiCoding);
-            AD.setNilaiTulis(nilaiTulis);
-            AD.setNilaiWawancara(nilaiWawancara);
+            
+            AndroidDev AD = new AndroidDev(Nama, nilaiTulis,nilaiCoding,nilaiWawancara);
+            
+            AD.pembobotanNilaiTulis();
+            AD.pembobotanNilaiCoding();
+            AD.pembobotanNilaiWawancara();
+            AD.hasilAkhir();
+            
+            subMenu(AD.getHasil(),AD.getNama(),opsiDev);
+            
         } else {
             Scanner input = new Scanner(System.in);
             double nilaiTulis, nilaiCoding, nilaiWawancara;
@@ -84,40 +94,45 @@ public class Main {
             nilaiCoding = input.nextDouble();
             System.out.print("Input Nilai Tes Wawancara  : ");
             nilaiWawancara = input.nextDouble();
-            WebDev WD = new WebDev();
-            WD.setNilaiCoding(nilaiCoding);
-            WD.setNilaiTulis(nilaiTulis);
-            WD.setNilaiWawancara(nilaiWawancara);
+            
+            WebDev WD = new WebDev(Nama, nilaiTulis,nilaiCoding,nilaiWawancara);
+            
+            WD.pembobotanNilaiTulis();
+            WD.pembobotanNilaiCoding();
+            WD.pembobotanNilaiWawancara();
+            WD.hasilAkhir();
+            subMenu(WD.getHasil(),WD.getNama(),opsiDev);
+            
         }
         
             
         
     }
-    static void tampil(int opsiDev){
+    static void tampil (Double Hasil,String Nama,int opsiDev){
         if (opsiDev == 1){
-            AndroidDev AD = new AndroidDev();
-            double hasil = AD.hasilAkhir();
-            if (AD.hasilAkhir() >= 85){
-                System.out.println(AD.getHasil());
-                System.out.println("SELAMAT LOLOS");
+            
+            if (Hasil >= 85){
+                System.out.println("Nilai Akhir : " + Hasil);
+                System.out.println("SELAMAT " + Nama +" LOLOS Sebagai Android Developer");
             } else {
-                System.out.println("MAAF " + AD.getNama()+ "TIDAK LOLOS");
+                System.out.println("Nilai Akhir : " + Hasil);
+                System.out.println("MAAF " + Nama + " TIDAK LOLOS");
             }
         } else {
-            WebDev WD = new WebDev();
             
-            
-            if (WD.getHasil() >= 85){
-                System.out.println("SELAMAT LOLOS");
+            if (Hasil >= 85){
+                System.out.println("Nilai Akhir : " + Hasil);
+                System.out.println("SELAMAT "+Nama + " LOLOS Sebagai Web Developer");
             } else {
-                System.out.println("MAAF TIDAK LOLOS");
+                System.out.println("Nilai Akhir : " + Hasil);
+                System.out.println("MAAF " +Nama+" TIDAK LOLOS");
             }
         }
         
             
         
     }
-    static void subMenu(int opsiDev){
+    static void subMenu(Double Hasil,String Nama,int opsiDev){
         int SubMenu;
         Scanner myOpsi = new Scanner(System.in);
 
@@ -126,13 +141,13 @@ public class Main {
             System.out.println("    1. Edit");
             System.out.println("    2. Tampil");
             System.out.println("    3. Exit");
-               System.out.println("    Pilih : ");
+               System.out.print("    Pilih : ");
                         SubMenu = myOpsi.nextInt();
                         switch(SubMenu){
                             case 1:
-                                editForm(opsiDev);
+                                editForm(Nama, opsiDev);
                             case 2:
-                                tampil(opsiDev);
+                                tampil(Hasil,Nama,opsiDev);
                                 break;
                             case 3:
                                 System.exit(0);
@@ -158,11 +173,11 @@ public class Main {
             switch(opsiDev){
                 case 1:
                     inputForm(opsiDev);
-                    subMenu(opsiDev);
+                    
                     break;
                 case 2:
                     inputForm(opsiDev);
-                    subMenu(opsiDev);
+                    
                     break;
 
                 default:
