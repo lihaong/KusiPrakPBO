@@ -24,17 +24,6 @@ public class WebDev implements HitungNilai{
     }
     
 
-    public void setNilaiTulis(double nilaiTulis) {
-        this.nilaiTulis = nilaiTulis;
-    }
-
-    public void setNilaiCoding(double nilaiCoding) {
-        this.nilaiCoding = nilaiCoding;
-    }
-
-    public void setNilaiWawancara(double nilaiWawancara) {
-        this.nilaiWawancara = nilaiWawancara;
-    }
     
     public WebDev(String NIK, String Nama, double nilaiTulis, double nilaiCoding, double nilaiWawancara) {
         this.NIK = NIK;
@@ -44,9 +33,13 @@ public class WebDev implements HitungNilai{
         this.nilaiWawancara = nilaiWawancara;
     }
     
-    public WebDev(){
-        
+    public WebDev(String nama , double nilaiTulis, double nilaiCoding, double nilaiWawancara){
+        this.Nama = nama;
+        this.nilaiTulis = nilaiTulis;
+        this.nilaiCoding = nilaiCoding;
+        this.nilaiWawancara = nilaiWawancara;
     }
+    
 
     @Override
     public double pembobotanNilaiTulis() {
