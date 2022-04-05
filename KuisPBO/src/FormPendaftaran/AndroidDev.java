@@ -13,7 +13,6 @@ public class AndroidDev implements HitungNilai{
 
     private String NIK, Nama;
     private double nilaiTulis, nilaiCoding, nilaiWawancara;
-    private double Hasil;
     double nilai;
 
     
@@ -31,12 +30,16 @@ public class AndroidDev implements HitungNilai{
     }
 
     public String getNama() {
-        return Nama;
+        return this.Nama;
     }
     
-    public AndroidDev(){
-        
+    public AndroidDev(String nama , double nilaiTulis, double nilaiCoding, double nilaiWawancara){
+        this.Nama = nama;
+        this.nilaiTulis = nilaiTulis;
+        this.nilaiCoding = nilaiCoding;
+        this.nilaiWawancara = nilaiWawancara;
     }
+    
     
     public AndroidDev(String NIK, String Nama, double nilaiTulis, double nilaiCoding, double nilaiWawancara) {
         this.NIK = NIK;
@@ -67,12 +70,12 @@ public class AndroidDev implements HitungNilai{
 
     @Override
     public double hasilAkhir() {
-        nilai = pembobotanNilaiTulis() + pembobotanNilaiCoding() + pembobotanNilaiWawancara();
-        return nilai;
+        this.nilai = pembobotanNilaiTulis() + pembobotanNilaiCoding() + pembobotanNilaiWawancara();
+        return this.nilai;
     }
     
     public double getHasil() {
-        return nilai;
+        return this.nilai;
     }
     
     
